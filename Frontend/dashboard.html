@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Realify — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="dashboard.css"/>
+</head>
+<body>
+
+<!-- Animated neural-network canvas background -->
+<canvas id="dash-canvas"></canvas>
+
+<!-- ══════════════════════════════════
+     DASHBOARD NAV
+══════════════════════════════════ -->
+<nav class="dash-nav">
+  <div class="dash-nav-inner">
+    <a class="nlogo" href="index.html" style="text-decoration:none">
+      <div class="nlogo-icon">🔍</div>
+      <span class="nlogo-txt">Reali<span>fy</span></span>
+    </a>
+    <div class="dnav-links">
+      <button class="dnav-link active" id="dnl-home"    onclick="showTab('home')">   <span>🏠</span> Home</button>
+      <button class="dnav-link"        id="dnl-analyze" onclick="showTab('analyze')"><span>🔍</span> Analyse News</button>
+      <button class="dnav-link"        id="dnl-history" onclick="showTab('history')"><span>📋</span> History</button>
+    </div>
+    <div class="dnav-right">
+      <div class="dash-user-chip">
+        <div class="duc-avatar" id="duc-avatar">AA</div>
+        <span class="duc-name" id="duc-name">User</span>
+      </div>
+      <button class="logout-btn" onclick="doLogout()"><span>🚪</span> Logout</button>
+      <button class="burger" id="dash-burger" onclick="toggleDashBurger()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mob-nav" id="dash-mob-nav">
+  <button class="mob-link" onclick="showTab('home');closeDashBurger()">🏠 Home</button>
+  <button class="mob-link" onclick="showTab('analyze');closeDashBurger()">🔍 Analyse News</button>
+  <button class="mob-link" onclick="showTab('history');closeDashBurger()">📋 History</button>
+  <button class="mob-link logout-mob" onclick="doLogout()">🚪 Logout</button>
+</div>
+
+<!-- ══════════════════════════════════
+     HOME TAB
+══════════════════════════════════ -->
+<div class="dash-tab active-tab" id="dt-home">
+  <div class="dash-content">
+
+    <div class="welcome-hero">
+      <div class="wh-left">
+        <div class="wh-greeting" id="wh-greeting">Good morning</div>
+        <h1 class="wh-name">Welcome back, <span id="wh-username" class="wh-accent"></span> 👋</h1>
+        <p class="wh-sub">Ready to detect misinformation? Paste any article, URL, or headline and get an instant AI credibility verdict.</p>
+        <button class="wh-cta" onclick="showTab('analyze')">🔍 Analyse News Now</button>
+      </div>
+      <div class="wh-right">
+        <div class="wh-stats">
+          <div class="whs"><div class="whs-val blue"   id="whs-total">0</div><div class="whs-label">Checked</div></div>
+          <div class="whs"><div class="whs-val red"    id="whs-fake">0</div><div class="whs-label">Fake</div></div>
+          <div class="whs"><div class="whs-val green"  id="whs-real">0</div><div class="whs-label">Real</div></div>
+          <div class="whs"><div class="whs-val purple">98%</div><div class="whs-label">Accuracy</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-analyze-card">
+      <div class="qac-top">
+        <span class="qac-icon">⚡</span>
+        <div>
+          <div class="qac-title">Quick Check</div>
+          <div class="qac-sub">Paste a headline for an instant verdict — no setup needed</div>
+        </div>
+      </div>
+      <div class="qac-row">
+        <input class="qac-input" id="qac-input" placeholder="e.g. Scientists confirm 5G causes illness…" onkeydown="if(event.key==='Enter')quickCheck()"/>
+        <button class="qac-btn" onclick="quickCheck()">Detect →</button>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="ds-header">
+        <h2 class="ds-title">Recent Analyses</h2>
+        <button class="ds-link" onclick="showTab('history')">View all →</button>
+      </div>
+      <div id="home-recent"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ANALYSE TAB
+══════════════════════════════════ -->
+<div class="dash-tab" id="dt-analyze">
+  <div class="dash-content">
+
+    <div class="az-page-header">
+      <h1>🔍 Analyse News</h1>
+      <p>Paste article text, a URL, or a headline — our AI checks credibility instantly.</p>
+    </div>
+
+    <div class="az-tabs">
+      <button class="azt active" id="azt-text" onclick="switchAzTab('text')">📝 Article Text</button>
+      <button class="azt"        id="azt-url"  onclick="switchAzTab('url')">🔗 URL</button>
+      <button class="azt"        id="azt-hl"   onclick="switchAzTab('hl')">📰 Headline</button>
+    </div>
+
+    <div class="az-card">
+      <!-- Input panels -->
+      <div id="az-input-area">
+
+        <div id="azp-text" class="az-panel">
+          <textarea class="az-textarea" id="az-ta" placeholder="Paste your full news article or excerpt here…" oninput="updateAzChar()"></textarea>
+          <div class="az-examples">
+            <span class="aze-label">Try example:</span>
+            <button class="aze-chip" onclick="loadEx('real')">✅ Real News</button>
+            <button class="aze-chip" onclick="loadEx('fake')">🚨 Fake News</button>
+            <button class="aze-chip" onclick="loadEx('uncertain')">⚠️ Uncertain</button>
+          </div>
+          <div class="az-footer">
+            <span class="az-char" id="az-char">0 / 5000</span>
+            <button class="az-run-btn" onclick="runAnalysis()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Analyse Now
+            </button>
+          </div>
+        </div>
+
+        <div id="azp-url" class="az-panel" style="display:none">
+          <div class="az-url-wrap">
+            <span class="az-url-icon">🔗</span>
+            <input class="az-url-input" id="az-url-in" placeholder="https://newssite.com/article..."/>
+          </div>
+          <div class="az-footer" style="margin-top:0.8rem">
+            <span class="az-char">Supports most major news sites</span>
+            <button class="az-run-btn" onclick="runAnalysis()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Fetch &amp; Analyse
+            </button>
+          </div>
+        </div>
+
+        <div id="azp-hl" class="az-panel" style="display:none">
+          <textarea class="az-textarea" style="min-height:100px" id="az-hl-ta" placeholder="Enter a headline or short claim to check…"></textarea>
+          <div class="az-footer">
+            <span class="az-char">Quick headline check mode</span>
+            <button class="az-run-btn" onclick="runAnalysis()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Check Claim
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Loading animation -->
+      <div id="az-loading" style="display:none">
+        <div class="azl-inner">
+          <div class="rings"><div class="ring-a"></div><div class="ring-b"></div><div class="ring-c"></div></div>
+          <p class="azl-title">Analysing your content…</p>
+          <div class="step-list">
+            <div class="step-row" id="as1"><div class="sr-dot"></div>Text preprocessing &amp; tokenization</div>
+            <div class="step-row" id="as2"><div class="sr-dot"></div>NLP sentiment &amp; tone analysis</div>
+            <div class="step-row" id="as3"><div class="sr-dot"></div>Cross-referencing fact databases</div>
+            <div class="step-row" id="as4"><div class="sr-dot"></div>Source credibility scoring</div>
+            <div class="step-row" id="as5"><div class="sr-dot"></div>Generating final verdict</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result panel (JS-injected) -->
+      <div id="az-result" style="display:none"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HISTORY TAB
+══════════════════════════════════ -->
+<div class="dash-tab" id="dt-history">
+  <div class="dash-content">
+    <div class="az-page-header">
+      <h1>📋 Analysis History</h1>
+      <p>All your past credibility checks in one place.</p>
+    </div>
+    <div class="hist-filters">
+      <button class="hf-btn active" onclick="filterHist(this,'all')">All</button>
+      <button class="hf-btn" onclick="filterHist(this,'rl')">✅ Real</button>
+      <button class="hf-btn" onclick="filterHist(this,'fk')">🚨 Fake</button>
+      <button class="hf-btn" onclick="filterHist(this,'uc')">⚠️ Uncertain</button>
+    </div>
+    <div id="hist-list"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="tic" id="ticon">✅</span><span id="tmsg">Done!</span></div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

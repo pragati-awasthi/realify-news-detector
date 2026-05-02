@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Realify — Intelligent Fake News Detection</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Satoshi:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="Style.css"/>
+</head>
+<body>
+
+<!-- ── Ambient background orbs -->
+<div id="land-ambient">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+</div>
+<div class="gridbg"></div>
+
+<!-- ══════════════════════════════════
+     LANDING NAV
+══════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a class="nlogo" href="#">
+      <div class="nlogo-icon">🔍</div>
+      <span class="nlogo-txt">Reali<span>fy</span></span>
+    </a>
+    <div class="nav-links">
+      <button class="nlink" onclick="scrollTo2('detect-visual')">How it Works</button>
+      <button class="nlink" onclick="scrollTo2('how-sec')">Features</button>
+      <button class="nlink" onclick="scrollTo2('contact-sec')">Contact Us</button>
+    </div>
+    <div class="nav-btns">
+      <button class="nbtn-ghost" onclick="openModal('signin')">Sign In</button>
+      <button class="nbtn-fill"  onclick="openModal('signup')">Get Started Free</button>
+    </div>
+    <button class="burger" id="burger" onclick="toggleBurger()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mob-nav" id="mob-nav">
+  <button class="mob-link" onclick="scrollTo2('detect-visual');closeBurger()">How it Works</button>
+  <button class="mob-link" onclick="scrollTo2('how-sec');closeBurger()">Features</button>
+  <button class="mob-link" onclick="scrollTo2('contact-sec');closeBurger()">Contact Us</button>
+  <button class="mob-link" onclick="openModal('signin');closeBurger()">Sign In</button>
+  <button class="mob-link cta" onclick="openModal('signup');closeBurger()">Get Started Free</button>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge"><div class="ldot"></div> AI-Powered • NLP • Real-time • Free</div>
+  <h1>Stop the spread of<br/><span class="hi">fake</span> <span class="strike">news</span><br/>in seconds</h1>
+  <p class="hero-p">Realify uses state-of-the-art machine learning and NLP to instantly classify news articles as real, fake, or uncertain — protecting you from misinformation.</p>
+  <div class="hero-ctas">
+    <button class="cta-main" onclick="openModal('signup')">🚀 Start Detecting Free</button>
+    <button class="cta-sec"  onclick="openModal('signin')">Sign In →</button>
+  </div>
+  <div class="stats-row">
+    <div class="st"><div class="st-n blue">98%</div><div class="st-l">Accuracy Rate</div></div>
+    <div class="st"><div class="st-n green">25+</div><div class="st-l">AI Scans</div></div>
+    <div class="st"><div class="st-n purple">&lt;2s</div><div class="st-l">Response Time</div></div>
+    <div class="st"><div class="st-n red">50+</div><div class="st-l">Test Samples</div></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     DETECTION VISUAL DEMO
+══════════════════════════════════ -->
+<section class="viz-section">
+  <div class="viz-label">
+    <div class="sec-tag">Live Detection Demo</div>
+    <h2>See Realify in action</h2>
+    <p>Real-time classification across credibility signals, tone, and source intelligence</p>
+  </div>
+  <div class="detect-visual" id="detect-visual">
+    <div class="dv-header">
+      <div class="dv-dot" style="background:#f55f5f"></div>
+      <div class="dv-dot" style="background:#f4a61e"></div>
+      <div class="dv-dot" style="background:#1ed49c"></div>
+      <span class="dv-title">realify.ai — Detection Engine v3.1</span>
+    </div>
+    <div class="dv-body">
+      <div class="dv-col">
+        <div class="dv-col-title">📨 Articles Analyzed</div>
+        <div class="fake-stream">
+          <div class="fs-card fk" style="animation-delay:.05s">
+            <div class="fsc-top"><span class="fsc-badge">🚨 FAKE</span><span class="fsc-score">96%</span></div>
+            <div class="fsc-title">5G towers secretly transmitting signals — government whistleblower</div>
+            <div class="fsc-bar"><div class="fsc-fill"></div></div>
+          </div>
+          <div class="fs-card rl" style="animation-delay:.2s">
+            <div class="fsc-top"><span class="fsc-badge">✅ REAL</span><span class="fsc-score">91%</span></div>
+            <div class="fsc-title">NASA James Webb Telescope captures deepest infrared image</div>
+            <div class="fsc-bar"><div class="fsc-fill"></div></div>
+          </div>
+          <div class="fs-card uc" style="animation-delay:.35s">
+            <div class="fsc-top"><span class="fsc-badge">⚠️ UNCERTAIN</span><span class="fsc-score">63%</span></div>
+            <div class="fsc-title">Coffee linked to 40% lower liver disease risk, new study finds</div>
+            <div class="fsc-bar"><div class="fsc-fill"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dv-divider"></div>
+      <div class="dv-col">
+        <div class="dv-col-title">⚙️ NLP Pipeline Status</div>
+        <div class="pipeline">
+          <div class="pipe-step"><div class="pipe-ic" style="background:rgba(77,142,246,0.12)">📥</div><div class="pipe-info"><div class="pipe-name">Text Preprocessing</div><div class="pipe-sub">Tokenization &amp; normalization</div></div><span class="pipe-status ps-done">Done</span></div>
+          <div class="pipe-step"><div class="pipe-ic" style="background:rgba(155,121,240,0.12)">🧠</div><div class="pipe-info"><div class="pipe-name">Sentiment Analysis</div><div class="pipe-sub">Tone &amp; bias scoring</div></div><span class="pipe-status ps-done">Done</span></div>
+          <div class="pipe-step"><div class="pipe-ic" style="background:rgba(30,212,156,0.12)">🔗</div><div class="pipe-info"><div class="pipe-name">Source Verification</div><div class="pipe-sub">Credibility database check</div></div><span class="pipe-status ps-run">Running</span></div>
+          <div class="pipe-step"><div class="pipe-ic" style="background:rgba(244,166,30,0.12)">🔍</div><div class="pipe-info"><div class="pipe-name">Fact Cross-reference</div><div class="pipe-sub">Knowledge base matching</div></div><span class="pipe-status ps-wait">Queued</span></div>
+          <div class="pipe-step"><div class="pipe-ic" style="background:rgba(245,95,95,0.12)">📊</div><div class="pipe-info"><div class="pipe-name">Verdict Generation</div><div class="pipe-sub">Confidence score output</div></div><span class="pipe-status ps-wait">Queued</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════ -->
+<section class="how-section" id="how-sec">
+  <div class="how-inner">
+    <div style="text-align:center">
+      <div class="sec-tag">Methodology</div>
+      <h2 style="font-family:'Cabinet Grotesk',sans-serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.5rem">How Realify detects fake news</h2>
+      <p style="color:var(--mu);font-size:0.93rem;max-width:480px;margin:0 auto">A 5-layer AI pipeline processes every article through linguistic, semantic, and credibility checks</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><div class="step-icon" style="background:rgba(77,142,246,0.12)">📥</div><div class="step-title">Input Ingestion</div><div class="step-desc">Text is cleaned, tokenized, and normalized. URLs are auto-fetched and parsed.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-icon" style="background:rgba(155,121,240,0.12)">🧠</div><div class="step-title">NLP Analysis</div><div class="step-desc">Transformer models score sentiment, tone, emotional manipulation, and patterns.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-icon" style="background:rgba(30,212,156,0.12)">🔗</div><div class="step-title">Source Check</div><div class="step-desc">Domain credibility, author history, cross-referencing with verified fact databases.</div></div>
+      <div class="step-card"><div class="step-num">04</div><div class="step-icon" style="background:rgba(244,166,30,0.12)">🔍</div><div class="step-title">Fact Matching</div><div class="step-desc">Claims compared against 10M+ verified facts in our knowledge base.</div></div>
+      <div class="step-card" style="border-right:none"><div class="step-num">05</div><div class="step-icon" style="background:rgba(245,95,95,0.12)">📊</div><div class="step-title">Verdict &amp; Score</div><div class="step-desc">Confidence score and REAL / FAKE / UNCERTAIN verdict with full breakdown.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FEATURES
+══════════════════════════════════ -->
+<section class="feat-section">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="sec-tag">Capabilities</div>
+    <h2 style="font-family:'Cabinet Grotesk',sans-serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.5rem">Everything you need to fight misinformation</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(77,142,246,0.12)">⚡</div><h3>Real-time Detection</h3><p>Analyze any article in under 2 seconds with our optimized ML pipeline.</p></div>
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(30,212,156,0.12)">🔬</div><h3>Explainable AI</h3><p>Every verdict comes with a detailed signal breakdown and confidence indicators.</p></div>
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(155,121,240,0.12)">🌐</div><h3>40+ Languages</h3><p>Detect misinformation across 40+ languages with multilingual transformers.</p></div>
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(245,95,95,0.12)">📡</div><h3>Source Intelligence</h3><p>Real-time credibility database tracking 50,000+ domains continuously.</p></div>
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(244,166,30,0.12)">📈</div><h3>Trend Detection</h3><p>Identify coordinated misinformation campaigns across articles.</p></div>
+    <div class="feat-card"><div class="feat-ic" style="background:rgba(77,142,246,0.12)">🔒</div><h3>Privacy First</h3><p>Zero data retention. Your content is never stored or used for training.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<section class="contact-section" id="contact-sec">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <span class="sec-tag">Get in Touch</span>
+      <h2>Have a query?<br/>We'd love to hear<br/>from you</h2>
+      <p>For questions, feedback, or support — drop us a message and our team will get back to you within 24 hours.</p>
+      <div class="contact-email-box">
+        <div class="ceb-ic">✉️</div>
+        <div class="ceb-info">
+          <div class="ceb-label">Email us at</div>
+          <div class="ceb-val">realify.newschecker@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-info-chips">
+        <div class="cic"><div class="cic-dot"></div> Response time: under 24 hours</div>
+        <div class="cic"><div class="cic-dot" style="background:var(--blue)"></div> Support: Mon–Fri, 9 AM – 6 PM IST</div>
+        <div class="cic"><div class="cic-dot" style="background:var(--pur)"></div> API &amp; partnership inquiries welcome</div>
+      </div>
+    </div>
+    <div class="contact-form-card">
+      <div id="cf-form-body">
+        <div class="cf-title">Send us a message</div>
+        <div class="cf-sub">Fill in the details below and we'll get back to you shortly.</div>
+        <div class="cf-group">
+          <label class="cf-label">Your Name</label>
+          <div class="cf-input-wrap"><span class="cf-icon">👤</span><input type="text" class="cf-input" id="cf-name" placeholder="Rohit Sharma" maxlength="80"/></div>
+          <div class="cf-err" id="cf-name-err">Please enter your name</div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Email Address</label>
+          <div class="cf-input-wrap"><span class="cf-icon">✉</span><input type="email" class="cf-input" id="cf-email" placeholder="you@example.com" maxlength="100"/></div>
+          <div class="cf-err" id="cf-email-err">Please enter a valid email</div>
+        </div>
+        <div class="cf-group">
+          <label class="cf-label">Message</label>
+          <textarea class="cf-textarea" id="cf-msg" placeholder="Type your message here…" maxlength="1000" oninput="updateCfChar()"></textarea>
+          <div class="cf-char" id="cf-char">0 / 1000</div>
+          <div class="cf-err" id="cf-msg-err">Message must be at least 10 characters</div>
+        </div>
+        <button class="cf-submit" id="cf-submit-btn" onclick="submitContactForm()">
+          <span id="cf-btn-txt">Send Message 📨</span>
+          <span id="cf-btn-ld" style="display:none;align-items:center;gap:8px"><div class="spin-sm"></div>Sending…</span>
+        </button>
+      </div>
+      <div class="cf-success" id="cf-success">
+        <div class="cf-success-ic">✅</div>
+        <h3>Message Sent!</h3>
+        <p>Thanks for reaching out. We'll reply within 24 hours.</p>
+        <button class="cf-success-btn" onclick="resetContactForm()">Send another message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     CTA + FOOTER
+══════════════════════════════════ -->
+<div class="cta-section">
+  <h2>Start detecting fake news <span style="color:var(--blue)">today</span></h2>
+  <p>Experience fast, AI-powered fake news detection — free to start</p>
+  <button class="cta-big" onclick="openModal('signup')">🚀 Create Free Account →</button>
+</div>
+
+<footer>
+  <div class="foot-logo">Reali<span>fy</span></div>
+  <div class="foot-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">API Docs</a>
+    <a href="#">About</a>
+    <a href="#" onclick="scrollTo2('contact-sec');return false">Contact</a>
+  </div>
+  <p>© 2025 Realify. Intelligent Fake News Detection. Built with ❤️ using NLP &amp; ML.</p>
+</footer>
+
+<!-- ══════════════════════════════════
+     AUTH MODAL
+══════════════════════════════════ -->
+<div class="modal-overlay" id="auth-modal" onclick="modalClickOut(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-top">
+      <div class="modal-logo">🔍</div>
+      <h2 id="modal-title">Welcome back</h2>
+      <p id="modal-sub">Sign in to your Realify account</p>
+    </div>
+    <!-- Secure badge -->
+    <div class="modal-secure-badge">
+      <span class="msb-icon">🔒</span>
+      <span id="modal-secure-txt">Secure login with email and password</span>
+    </div>
+    <div class="modal-body">
+      <!-- SIGN IN -->
+     <div id="mf-signin">
+  <div class="fg">
+    <label class="fl">Email Address</label>
+    <div class="fi-wrap">
+      <span class="fi-icon">✉</span>
+      <input type="email" class="fi" id="si-em" placeholder="you@example.com"/>
+    </div>
+    <div class="ferr" id="sie-err">Please enter a valid email</div>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Password</label>
+    <div class="fi-wrap">
+      <span class="fi-icon">🔒</span>
+      <input 
+        type="password" 
+        class="fi" 
+        id="si-pw" 
+        placeholder="Your password"
+        onkeydown="if(event.key==='Enter'){ event.preventDefault(); doLogin(); }"
+      />
+    </div>
+    <div class="ferr" id="sip-err">Password is required</div>
+  </div>
+
+  <div class="rem-row">
+    <label class="chk"><input type="checkbox" checked/> Remember me</label>
+    <button type="button" class="flink"  onclick="forgotPassword()">Forgot password?</button>
+  </div>
+
+  <!-- ✅ FIXED BUTTON -->
+  <button type="button" class="sbtn" id="si-btn" onclick="doLogin()">
+    <span id="si-txt">Sign In to Realify</span>
+    <span id="si-ld" style="display:none;gap:8px;align-items:center">
+      <div class="spin-sm"></div>Signing in…
+    </span>
+  </button>
+
+  <div class="modal-switch-row">
+    New here?
+    <button type="button" class="modal-switch-link" onclick="switchModal('signup')">
+      Create an account →
+    </button>
+  </div>
+</div>
+
+<!-- SIGN UP -->
+<div id="mf-signup" style="display:none">
+  <div class="frow2">
+    <div class="fg">
+      <label class="fl">First Name</label>
+      <input type="text" class="fi" id="su-fn" placeholder="Rohit" style="padding-left:1rem"/>
+      <div class="ferr" id="suf-err">Required</div>
+    </div>
+
+    <div class="fg">
+      <label class="fl">Last Name</label>
+      <input type="text" class="fi" id="su-ln" placeholder="Sharma" style="padding-left:1rem"/>
+    </div>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Email Address</label>
+    <div class="fi-wrap">
+      <span class="fi-icon">✉</span>
+      <input type="email" class="fi" id="su-em" placeholder="you@example.com"/>
+    </div>
+    <div class="ferr" id="sue-err">Please enter a valid email</div>
+  </div>
+
+  <div class="fg">
+    <label class="fl">Password</label>
+    <div class="fi-wrap">
+      <span class="fi-icon">🔒</span>
+      <input 
+        type="password" 
+        class="fi" 
+        id="su-pw" 
+        placeholder="Min 8 characters"
+        oninput="pwStrength(this.value)"
+      />
+    </div>
+    <div class="pstr">
+      <div class="pstr-bar" id="pstr-bar"></div>
+    </div>
+    <div class="ferr" id="sup-err">Must be at least 8 characters</div>
+  </div>
+
+  <!-- ✅ FIXED BUTTON -->
+  <button type="button" class="sbtn" id="su-btn" onclick="doRegister()">
+    <span id="su-txt">Create My Account</span>
+    <span id="su-ld" style="display:none;gap:8px;align-items:center">
+      <div class="spin-sm"></div>Creating account…
+    </span>
+  </button>
+
+  <div class="modal-switch-row">
+    Already have an account?
+    <button type="button" class="modal-switch-link" onclick="switchModal('signin')">
+      Sign in →
+    </button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="tic" id="ticon">✅</span><span id="tmsg">Done!</span></div>
+
+<script src="Script.js">
+</script>
+</body>
+</html>
