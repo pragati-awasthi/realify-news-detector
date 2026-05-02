@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const axios = require("axios"); // ✅ ADD THIS
-
+const axios = require("axios"); 
+require("dotenv").config();
 const app = express();  
 
 // Middleware

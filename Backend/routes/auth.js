@@ -4,15 +4,17 @@ const User = require("../models/User");
 const nodemailer = require("nodemailer");
 
 
+require("dotenv").config();   //  load environment variables
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "realify.newschecker@gmail.com",
-    pass: "czaryrfpsekasriu"
+    user: process.env.EMAIL_USER,   
+    pass: process.env.EMAIL_PASS    
   }
 });
 
-// ✅ SIGNUP API
+// SIGNUP API
 router.post("/signup", async (req, res) => {
   console.log("👉 Signup API called");
 
@@ -53,12 +55,12 @@ router.post("/signup", async (req, res) => {
 });
 
 
-// ✅ LOGIN API
+// LOGIN API
 router.post("/login", async (req, res) => {
   console.log("👉 Login API called");
 
   try {
-    // ✅ ADD THESE 3 LINES
+    //  ADD THESE 3 LINES
     console.log("📩 Full Body:", req.body);
 
     const { email, password } = req.body;
