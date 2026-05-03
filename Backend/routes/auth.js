@@ -128,7 +128,7 @@ router.post("/forgot-password", async (req, res) => {
 
     // send email
     await transporter.sendMail({
-      from: "your_email@gmail.com",
+      from: process.env.EMAIL_USER,
       to: email,
       subject: "Realify Password Reset",
       text: `Your new password is: ${newPassword}`

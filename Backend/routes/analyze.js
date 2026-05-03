@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const { text } = req.body;
 
     // Call Python API
-    const response = await axios.post("http://127.0.0.1:5001/predict", {
+    const response = await axios.post("https://realify-ml-api.onrender.com/predict", {
       text: text
     });
 
