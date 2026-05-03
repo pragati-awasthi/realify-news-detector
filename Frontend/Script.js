@@ -20,13 +20,13 @@ function closeBurger()  { $('mob-nav').classList.remove('open'); }
 /* ── AUTH MODAL ── */
 function openModal(mode) {
   switchModal(mode);
-  $('auth-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.getElementById("auth-modal").style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
-  $('auth-modal').classList.remove('open');
-  document.body.style.overflow = '';
+  document.getElementById("auth-modal").style.display = "none";
+  document.body.style.overflow = "";
 }
 
 function switchModal(mode) {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function forgotPassword() {
-  const email = prompt("Enter your email");
+  const email = prompt("Enter your email for password reset");
 
   if (!email) return;
 
@@ -151,6 +151,9 @@ function forgotPassword() {
   .then(res => res.json())
   .then(data => {
     alert(data.message);
+  })
+  .catch(() => {
+    alert("Server error");
   });
 }
 
@@ -227,16 +230,11 @@ function submitContactForm() {
 }
 
 function modalClickOut(event) {
-  const modal = document.getElementById("forgotModal");
+  const modal = document.getElementById("auth-modal");
 
   if (event.target === modal) {
     modal.style.display = "none";
   }
 }
-
-function forgotPassword() {
-  document.getElementById("auth-modal").style.display = "block";
-}
-
 window.modalClickOut = modalClickOut;
 window.forgotPassword = forgotPassword;
