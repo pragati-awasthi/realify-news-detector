@@ -368,7 +368,7 @@ const cleanedText = text
   .replace(/\s+/g, " ")   // remove extra spaces
   .replace(/\n/g, " ");   // remove line breaks
 
-fetch("http://localhost:5000/api/predict", {
+fetch("https://realify-ml-api.onrender.com/predict", {
   method: "POST",
   headers: {
     "Content-Type": "application/json"

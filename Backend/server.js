@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // ✅ MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/realify")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected to realify"))
 .catch(err => console.log(err));
 
@@ -36,7 +36,7 @@ app.post("/api/predict", async (req, res) => {
     }
 
     // 👉 Call Flask API
-    const response = await axios.post("http://127.0.0.1:5001/predict", {
+    const response = await axios.post("https://realify-ml-api.onrender.com/predict", {
       text: text
     });
 

@@ -2,5 +2,5 @@ node_modules/
 __pycache__/
 *.pyc
 .env
-model.pkl
-vectorizer.pkl
+# model.pkl
+# vectorizer.pkl
