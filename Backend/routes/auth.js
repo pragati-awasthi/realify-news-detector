@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // SIGNUP API
-router.post("/signup", async (req, res) => {
+router.post("/register", async (req, res) => {
   console.log("👉 Signup API called");
 
   try {
