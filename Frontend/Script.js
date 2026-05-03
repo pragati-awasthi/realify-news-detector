@@ -235,13 +235,7 @@ function modalClickOut(event) {
 }
 
 function forgotPassword() {
-  const modal = document.getElementById("forgotModal");
-
-  if (modal) {
-    modal.style.display = "block";
-  } else {
-    alert("Forgot password modal not found");
-  }
+  document.getElementById("auth-modal").style.display = "block";
 }
 
 window.modalClickOut = modalClickOut;
