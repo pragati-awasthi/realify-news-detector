@@ -225,3 +225,24 @@ function submitContactForm() {
     document.getElementById("cf-btn-ld").style.display = "none";
   });
 }
+
+function modalClickOut(event) {
+  const modal = document.getElementById("forgotModal");
+
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+function forgotPassword() {
+  const modal = document.getElementById("forgotModal");
+
+  if (modal) {
+    modal.style.display = "block";
+  } else {
+    alert("Forgot password modal not found");
+  }
+}
+
+window.modalClickOut = modalClickOut;
+window.forgotPassword = forgotPassword;
