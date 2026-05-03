@@ -6,7 +6,6 @@
    analyser, history.
 ═══════════════════════════════════════ */
 
-/* ── GUARD: redirect to landing if not logged in ── */
 
 
 const _storedUser = localStorage.getItem('realify_user');

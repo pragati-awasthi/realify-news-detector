@@ -1,8 +1,3 @@
-/* ═══════════════════════════════════════
-   REALIFY — script.js (FINAL CLEAN)
-═══════════════════════════════════════ */
-
-/* ── UTILS ── */
 const $ = id => document.getElementById(id);
 
 function showToast(icon, msg) {
@@ -66,7 +61,7 @@ async function doRegister() {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/auth/signup", {
+    const response = await fetch("https://realify-backend.onrender.com/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -105,7 +100,7 @@ async function doLogin() {
   }
 
   try {
-    const res = await fetch("http://localhost:5000/api/auth/login", {
+    const res = await fetch("https://realify-backend.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -146,7 +141,7 @@ function forgotPassword() {
 
   if (!email) return;
 
-  fetch("http://localhost:5000/api/auth/forgot-password", {
+  fetch("https://realify-backend.onrender.com/api/auth/forgot-password", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -199,7 +194,7 @@ function submitContactForm() {
   document.getElementById("cf-btn-ld").style.display = "flex";
 
   // 🔥 API CALL
-  fetch("http://localhost:5000/api/contact", {
+  fetch("https://realify-backend.onrender.com/api/contact", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
